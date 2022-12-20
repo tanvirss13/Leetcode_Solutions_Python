@@ -1,24 +1,3 @@
-class MyHashSet:
-
-    def __init__(self):
-        self.keyRange = 769
-        self.bucketArray = [Bucket() for i in range(self.keyRange)]
-        
-    def _hash(self,key):
-        return key%self.keyRange
-
-    def add(self, key: int) -> None:
-        bucketIndex = self._hash(key)
-        self.bucketArray[bucketIndex].insert(key)
-
-    def remove(self, key: int) -> None:
-        bucketIndex = self._hash(key)
-        self.bucketArray[bucketIndex].delete(key)
-
-    def contains(self, key: int) -> bool:
-        bucketIndex = self._hash(key)
-        return self.bucketArray[bucketIndex].exists(key)
-
 class Node:
     def __init__(self,value,nextNode=None):
         self.value=value
@@ -51,8 +30,23 @@ class Bucket:
         return False 
             
 
-# Your MyHashSet object will be instantiated and called as such:
-# obj = MyHashSet()
-# obj.add(key)
-# obj.remove(key)
-# param_3 = obj.contains(key)
+class MyHashSet:
+
+    def __init__(self):
+        self.keyRange = 769
+        self.bucketArray = [Bucket() for i in range(self.keyRange)]
+        
+    def _hash(self,key):
+        return key%self.keyRange
+
+    def add(self, key: int) -> None:
+        bucketIndex = self._hash(key)
+        self.bucketArray[bucketIndex].insert(key)
+
+    def remove(self, key: int) -> None:
+        bucketIndex = self._hash(key)
+        self.bucketArray[bucketIndex].delete(key)
+
+    def contains(self, key: int) -> bool:
+        bucketIndex = self._hash(key)
+        return self.bucketArray[bucketIndex].exists(key)
